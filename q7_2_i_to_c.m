@@ -1,0 +1,51 @@
+clear,clc;
+data=importdata('input_index_7_2.txt');
+I=data.data;
+J=I;
+L1=4;L2=8;L3=5;L4=9;L5=6;L6=7;
+len=length(I);
+x1=zeros(len,1);
+x2=x1;
+x3=x2;
+x4=x3;
+x5=x4;
+x6=x5;
+for i=1:len
+    x6(i)=floor(I(i)/(L5*L4*L3*L2*L1));
+    J(i)=I(i)-x6(i)*(L5*L4*L3*L2*L1);
+    x5(i)=floor(J(i)/(L4*L3*L2*L1));
+    J(i)=J(i)-x5(i)*(L4*L3*L2*L1);
+    x4(i)=floor(J(i)/(L3*L2*L1));
+    J(i)=J(i)-x4(i)*(L3*L2*L1);
+    x3(i)=floor(J(i)/(L2*L1));
+    J(i)=J(i)-x3(i)*L2*L1;
+    x2(i)=floor(J(i)/L1);
+    x1(i)=J(i)-x2(i)*L1;
+end
+fid=['output_coordinates_7_2','.txt'];
+c=fopen(fid,'w');
+fprintf(c,'%s','x1');
+fprintf(c,'%s\t','');
+fprintf(c,'%s','x2');
+fprintf(c,'%s\t','');
+fprintf(c,'%s','x3');
+fprintf(c,'%s\t','');
+fprintf(c,'%s','x4');
+fprintf(c,'%s\t','');
+fprintf(c,'%s','x5');
+fprintf(c,'%s\t','');
+fprintf(c,'%s\n','x6');
+for j=1:len
+    fprintf(c,'%d',x1(j));
+    fprintf(c,'%s\t','');
+    fprintf(c,'%d',x2(j));
+    fprintf(c,'%s\t','');
+    fprintf(c,'%d',x3(j));
+    fprintf(c,'%s\t','');
+    fprintf(c,'%d',x4(j));
+    fprintf(c,'%s\t','');
+    fprintf(c,'%d',x5(j));
+    fprintf(c,'%s\t','');
+    fprintf(c,'%d\n',x6(j));
+end
+fclose(c);

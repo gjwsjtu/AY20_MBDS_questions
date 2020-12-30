@@ -1,0 +1,15 @@
+clear,clc;
+data=importdata('input_coordinates_7_2.txt');
+x1=data.data(:,1);
+x2=data.data(:,2);
+x3=data.data(:,3);
+x4=data.data(:,4);
+x5=data.data(:,5);
+x6=data.data(:,6);
+L1=4;L2=8;L3=5;L4=9;L5=6;L6=7;
+I=x1+x2.*L1+x3.*L1*L2+x4.*L1*L2*L3+x5.*L1*L2*L3*L4+x6.*L1*L2*L3*L4*L5;
+fid1=['output_index_7_2','.txt'];
+c=fopen(fid1,'w');
+fprintf(c,'%s\n','index');
+fprintf(c,'%d\n',I);
+fclose(c);
